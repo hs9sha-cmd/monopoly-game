@@ -162,7 +162,11 @@ export default function BoardPage() {
            }
         } else {
            curr--;
-           if (curr < 0) curr = 19;
+           if (curr <= 0) {
+               curr = 0;
+               path.push(curr);
+               break;
+           }
            path.push(curr);
         }
       }
@@ -360,7 +364,7 @@ export default function BoardPage() {
             return (
               <div 
                 key={t.id} 
-                className={`w-7 h-7 md:w-8 md:h-8 rounded-full ${safeColor} flex items-center justify-center text-[10px] md:text-xs font-black shadow-[0_0_10px_currentColor] border-2 border-slate-900 transform transition-transform hover:scale-125 cursor-default relative z-10`} 
+                className={`w-4 h-4 sm:w-6 sm:h-6 md:w-8 md:h-8 rounded-full ${safeColor} flex items-center justify-center text-[7px] sm:text-[10px] md:text-xs font-black shadow-[0_0_10px_currentColor] border border-slate-900 transform transition-transform hover:scale-125 cursor-default relative z-10`} 
                 title={t.name}
               >
                 {t.name.substring(0,2)}
@@ -376,24 +380,26 @@ export default function BoardPage() {
 
   return (
     <div className="min-h-screen bg-slate-950 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-slate-900 via-slate-950 to-black text-slate-200 flex flex-col items-center p-4 md:p-8 font-sans relative overflow-hidden">
-      <div className="w-full max-w-4xl flex justify-between items-center mb-6 bg-slate-900/80 backdrop-blur-md px-6 py-4 rounded-3xl shadow-[0_0_20px_rgba(8,145,178,0.2)] border border-cyan-800/50 z-10">
-        <h1 className="text-2xl md:text-3xl font-black text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500 drop-shadow-[0_0_8px_rgba(34,211,238,0.5)]">
+      <div className="w-full max-w-4xl flex flex-col md:flex-row justify-between items-center mb-2 md:mb-6 gap-3 md:gap-0 bg-slate-900/80 backdrop-blur-md px-4 py-3 md:px-6 md:py-4 rounded-2xl md:rounded-3xl shadow-[0_0_20px_rgba(8,145,178,0.2)] border border-cyan-800/50 z-10">
+        <h1 className="text-xl md:text-3xl font-black text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500 drop-shadow-[0_0_8px_rgba(34,211,238,0.5)]">
           ห้อง: {matchData?.pinCode}
         </h1>
-        <div className="flex gap-4 items-center">
+        <div className="flex flex-col sm:flex-row gap-2 md:gap-4 items-center w-full md:w-auto">
            {myTeam && (
-             <div className="text-lg font-bold text-slate-300 bg-slate-800/80 px-4 py-2 rounded-xl shadow-inner border border-cyan-900/50">
+             <div className="text-sm md:text-lg font-bold text-slate-300 bg-slate-800/80 px-3 py-1.5 md:px-4 md:py-2 rounded-lg md:rounded-xl shadow-inner border border-cyan-900/50 w-full sm:w-auto text-center">
                ทีม: <span className="text-cyan-400 font-black">{myTeam.name}</span>
-               {myTeam?.score > 0 && <span className="ml-2 text-green-600 font-bold text-sm">อันดับที่ {myTeam.score} 🏆</span>}
+               {myTeam?.score > 0 && <span className="ml-2 text-green-600 font-bold text-xs md:text-sm">อันดับที่ {myTeam.score} 🏆</span>}
              </div>
            )}
-          <button 
-            onClick={handleRollDice}
-            disabled={rolling || !!activeQuestion || (myTeam?.score > 0) || isGameOver}
-            className="px-6 py-4 bg-gradient-to-r from-orange-400 to-red-500 text-white rounded-xl hover:shadow-lg font-bold text-xl transition transform active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2"
-          >
-            {rolling ? `🎲 ทอยได้ ${diceResult || '...'}` : (myTeam?.score > 0 ? 'เข้าเส้นชัยแล้ว' : '🎲 ทอยลูกเต๋า')}
-          </button>
+          {myTeam && (
+            <button 
+              onClick={handleRollDice}
+              disabled={rolling || !!activeQuestion || (myTeam?.score > 0) || isGameOver}
+              className="w-full sm:w-auto px-4 py-2 md:px-6 md:py-4 bg-gradient-to-r from-orange-400 to-red-500 text-white rounded-lg md:rounded-xl hover:shadow-lg font-bold text-base md:text-xl transition transform active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+            >
+              {rolling ? `🎲 ทอยได้ ${diceResult || '...'}` : (myTeam?.score > 0 ? 'เข้าเส้นชัยแล้ว' : '🎲 ทอยลูกเต๋า')}
+            </button>
+          )}
         </div>
       </div>
       
