@@ -1,0 +1,58 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model Game {
+  id          Int        @id @default(autoincrement())
+  name        String     @unique
+  description String?
+  createdAt   DateTime   @default(now())
+  updatedAt   DateTime   @updatedAt
+  questions   Question[]
+  matches     Match[]
+}
+
+model Question {
+  id             Int      @id @default(autoincrement())
+  gameId         Int
+  game           Game     @relation(fields: [gameId], references: [id], onDelete: Cascade)
+  category       String   // ทฤษฎี, คำนวณ, ดวง
+  questionText   String   
+  optionA        String?
+  optionB        String?
+  optionC        String?
+  optionD        String?
+  correctAnswer  String?  // A, B, C, D
+  timeLimit      Int?     // 30, 60, 90 (วินาที)
+  points         Int      @default(0)
+  penaltySpaces  Int      @default(0) // ถอยหลังกี่ช่อง
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+}
+
+model Match {
+  id          Int      @id @default(autoincrement())
+  gameId      Int
+  game        Game     @relation(fields: [gameId], references: [id], onDelete: Cascade)
+  pinCode     String   @unique
+  status      String   @default("waiting") // waiting, playing, finished
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  teams       Team[]
+}
+
+model Team {
+  id              Int      @id @default(autoincrement())
+  matchId         Int
+  match           Match    @relation(fields: [matchId], references: [id], onDelete: Cascade)
+  name            String
+  currentPosition Int      @default(0)
+  score           Int      @default(0)
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+}

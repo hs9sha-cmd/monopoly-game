@@ -1,0 +1,20 @@
+0 verbose cli /Users/pongsaklaocharoensuk/.nvm/versions/node/v20.20.2/bin/node /Users/pongsaklaocharoensuk/.nvm/versions/node/v20.20.2/bin/npm
+1 info using npm@10.8.2
+2 info using node@v20.20.2
+3 silly config load:file:/Users/pongsaklaocharoensuk/.nvm/versions/node/v20.20.2/lib/node_modules/npm/npmrc
+4 silly config load:file:/Users/pongsaklaocharoensuk/Monopoly/backend/.npmrc
+5 silly config load:file:/Users/pongsaklaocharoensuk/.npmrc
+6 silly config load:file:/Users/pongsaklaocharoensuk/.nvm/versions/node/v20.20.2/etc/npmrc
+7 verbose title npm install express socket.io cors dotenv multer xlsx prisma @prisma/client mysql2
+8 verbose argv "install" "express" "socket.io" "cors" "dotenv" "multer" "xlsx" "prisma" "@prisma/client" "mysql2" "--cache" "/Users/pongsaklaocharoensuk/Monopoly/.npm"
+9 verbose logfile logs-max:10 dir:/Users/pongsaklaocharoensuk/Monopoly/.npm/_logs/2026-09-19T15_14_37_377Z-
+10 verbose logfile /Users/pongsaklaocharoensuk/Monopoly/.npm/_logs/2026-09-19T15_14_37_377Z-debug-0.log
+11 silly packumentCache heap:2197815296 maxSize:549453824 maxEntrySize:274726912
+12 silly logfile done cleaning log files
+13 http fetch GET https://registry.npmjs.org/npm attempt 1 failed with ENOTFOUND
+14 silly idealTree buildDeps
+15 silly fetch manifest express@*
+16 silly packumentCache full:https://registry.npmjs.org/express cache-miss
+17 http fetch GET https://registry.npmjs.org/express attempt 1 failed with ENOTFOUND
+18 http fetch GET https://registry.npmjs.org/npm attempt 2 failed with ENOTFOUND
+19 http fetch GET https://registry.npmjs.org/express attempt 2 failed with ENOTFOUND
