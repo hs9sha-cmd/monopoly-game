@@ -259,8 +259,8 @@ io.on('connection', (socket) => {
 
     if (!isCorrect) {
       newPosition -= penaltySpaces; 
-      if (newPosition < 0) {
-         newPosition = 20 + (newPosition % 20); 
+      if (newPosition <= 0) {
+         newPosition = 0; // ไม่ให้ถอยต่ำกว่าจุด Start
       } else if (newPosition === 20) {
          isWinner = true;
          newPosition = 0;
