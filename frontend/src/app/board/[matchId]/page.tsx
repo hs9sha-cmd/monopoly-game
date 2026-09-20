@@ -228,7 +228,7 @@ export default function BoardPage() {
 
   const handleRollDice = () => {
     if (rolling) return;
-    socket?.emit(`roll_dice', { matchId, teamId });
+    socket?.emit(`roll_dice`, { matchId, teamId });
   };
 
   const triggerQuestion = (position: number) => {

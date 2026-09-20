@@ -86,7 +86,7 @@ export default function AdminDashboard() {
     if (!confirm('ยืนยันที่จะลบห้องการแข่งขันนี้ถาวรหรือไม่?')) return;
     try {
       await fetch(`${API_URL}/api/admin/matches/${matchId}`, {
-        method: `DELETE'
+        method: 'DELETE'
       });
       alert('ลบห้องการแข่งขันเรียบร้อย');
       fetchMatches();
@@ -99,7 +99,7 @@ export default function AdminDashboard() {
     if (!confirm('ยืนยันที่จะรีเซ็ตเกมนี้ (เริ่มใหม่ทั้งหมด) หรือไม่?')) return;
     try {
       await fetch(`${API_URL}/api/admin/matches/${matchId}/reset`, {
-        method: `POST'
+        method: 'POST'
       });
       alert('รีเซ็ตห้องแข่งขันเรียบร้อยแล้ว ทุกทีมกลับไปที่จุดเริ่มต้น!');
       fetchMatches();
@@ -112,7 +112,7 @@ export default function AdminDashboard() {
     if (!confirm('ยืนยันที่จะลบชุดเกมนี้ถาวรหรือไม่?')) return;
     try {
       await fetch(`${API_URL}/api/admin/games/${gameId}`, {
-        method: `DELETE'
+        method: 'DELETE'
       });
       alert('ลบชุดเกมเรียบร้อย');
       fetchGames();
