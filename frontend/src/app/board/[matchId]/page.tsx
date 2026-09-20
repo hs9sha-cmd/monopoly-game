@@ -45,13 +45,18 @@ export default function BoardPage() {
   }, [teams]);
 
   useEffect(() => {
-    const storedTeam = localStorage.getItem('teamId');
-    if (!storedTeam) {
-      Swal.fire({title: 'ข้อผิดพลาด', text: 'ไม่พบข้อมูลทีม กรุณาเข้าร่วมใหม่', icon: 'error', background: '#0f172a', color: '#e2e8f0'});
-      router.push('/');
-      return;
+    const urlParams = new URLSearchParams(window.location.search);
+    const isAdmin = urlParams.get('admin') === 'true';
+
+    if (!isAdmin) {
+      const storedTeam = localStorage.getItem('teamId');
+      if (!storedTeam) {
+        Swal.fire({title: 'ข้อผิดพลาด', text: 'ไม่พบข้อมูลทีม กรุณาเข้าร่วมใหม่', icon: 'error', background: '#0f172a', color: '#e2e8f0'});
+        router.push('/');
+        return;
+      }
+      setTeamId(Number(storedTeam));
     }
-    setTeamId(Number(storedTeam));
 
     fetchMatchData();
 

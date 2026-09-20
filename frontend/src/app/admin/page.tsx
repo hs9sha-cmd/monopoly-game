@@ -233,9 +233,11 @@ export default function AdminDashboard() {
                           {match.status === 'playing' ? 'กำลังเล่น' : 'จบเกมแล้ว'}
                         </span>
                       </td>
-                      <td className="p-3 text-gray-900">{match.teams?.length || 0}/4 ทีม</td>
+                      <td className="p-3 text-gray-900">{match.teams?.length || 0}/12 ทีม</td>
                       <td className="p-3 flex gap-2">
-                        <button className="text-indigo-600 hover:text-indigo-800 text-sm font-medium bg-indigo-50 px-3 py-1 rounded-md">
+                        <button 
+                          onClick={() => window.open(`/board/${match.id}?admin=true`, '_blank')}
+                          className="text-indigo-600 hover:text-indigo-800 text-sm font-medium bg-indigo-50 px-3 py-1 rounded-md">
                           ดูกระดาน
                         </button>
                         <button 
